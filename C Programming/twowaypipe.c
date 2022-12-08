@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<unistd.h>
 int main(){
-    int pipefds1[2],pipefds[2];
+    int pipefds1[2],pipefds2[2];
     int returnstatus1,returnstatus2;
     int pid;
     char pipe1writemessage[20]="Hi";
@@ -21,10 +21,10 @@ int main(){
     if (pid !=0){
         close(pipefds1[0]);
         close(pipefds2[1]);
-        printf("in parent: Writing to pipe 1 - Message is %s\n, pipe 1 write message");
+        printf("in parent: Writing to pipe 1 - Message is %s\n",pipe1writemessage);
         write(pipefds1[1],pipe1writemessage,sizeof(pipe1writemessage));
         read(pipefds2[0],readmessage,sizeof(readmessage));
-        print("in parent: reading from pipe 2 - message is %s\n",readmessage);
+        print2("in parent: reading from pipe 2 - message is %s\n",readmessage);
     }
     else{
         close(pipefds1[1]);
